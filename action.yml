@@ -57,7 +57,7 @@ runs:
         echo "RUDDERSTACK_CLI_CI_PLATFORM=github-actions" >> $GITHUB_ENV
         echo "RUDDERSTACK_CLI_WORKFLOW_VERSION=${{ github.action_ref }}" >> $GITHUB_ENV
         echo "CI platform: github-actions"
-        echo "workflow version: ${{ github.action_ref }}"
+        echo "Workflow version: ${{ github.action_ref }}"
 
     - name: Validate project files
       if: inputs.mode == 'validate'
