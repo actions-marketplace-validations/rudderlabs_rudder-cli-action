@@ -15,7 +15,7 @@ inputs:
   cli_version:
     description: "Version of rudder-cli to use"
     required: false
-    default: "v0.11.2"
+    default: "v0.12.0"
 
 runs:
   using: "composite"
@@ -50,6 +50,14 @@ runs:
           echo "::error::Invalid mode: ${{ inputs.mode }}. Mode must be one of: validate, dry-run, apply"
           exit 1
         fi
+
+    - name: Set github action version and platform
+      shell: bash
+      run: |
+        echo "RUDDERSTACK_CLI_CI_PLATFORM=github-actions" >> $GITHUB_ENV
+        echo "RUDDERSTACK_CLI_WORKFLOW_VERSION=${{ github.action_ref }}" >> $GITHUB_ENV
+        echo "CI platform: github-actions"
+        echo "Workflow version: ${{ github.action_ref }}"
 
     - name: Validate project files
       if: inputs.mode == 'validate'
